@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>tic-tac-toe</title>
+    <style media="screen">
+      * {
+       box-sizing: border-box;
+       color: #320a28;
+      }
+     body {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       background-color: #320a28;
+       ;
+     }
+     h2 {
+       color: #cb9173;
+     }
+     .board {
+       border: 50px solid #511730;
+       display: flex;
+       width: 75vh;
+       height: 75vh;
+       flex-direction: row;
+       flex-wrap: wrap;
+       justify-content: flex-start;
+       background-color: #8e443d;
+       border-radius: 1em;
+     } 
+     .cell {
+       height: 33.3%;
+       width: 33.3%;
+       border: 2px solid #cb9173;
+       font-size: 5em;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+     }
+     .cell:hover {
+       cursor: pointer;
+       background-color: #e0d68a;
+     }
+    </style>
+  </head>
+  <body>
+    <h2>tic-tac-toe</h2>
+    <div class="board">
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+    <script>
+      let player_x = 'x'
+      let player_o = 'o'
+      let player = player_x
+      const board = document.querySelector('.board')
+      board.addEventListener('click', (e) => {
+        e.target.innerHTML = player 
+        player = player === player_x ? player_o : player_x
+        checkPlay()
+      })
+      const checkPlay = () => {
+        const cells = document.querySelectorAll('.cell')
+        const cellsArr = Array.prototype.slice.call(cells, 0)
+        const plays = cellsArr.map((cell) => {
+          return cell.innerHTML
+        })
+        const wins = [
+                      [0,1,2],
+                      [3,4,5],
+                      [6,7,8],
+                      [0,3,6],
+                      [1,4,7],
+                      [2,5,8],
+                      [0.4,8],
+                      [2,4,6]
+        ]
+        console.log(plays)
+        const winner = wins.find(combo => {
+          if (plays[combo[0]] === plays[combo[1]] && 
+          plays[combo[1]] === plays[combo[2]]) {
+            return plays[combo[0]]
+          }
+          else {
+            return false
+          }
+        })
+        console.log("winner: ", winner)
+      }
+    </script>
+  </body>
+</html>
