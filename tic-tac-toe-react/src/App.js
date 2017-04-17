@@ -17,14 +17,10 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={ logo } className="App-logo" alt="logo" />
-          <h2 onClick={() => this.setState({message: this.state.message })}>{this.state.message}</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="board">
+      {this.state.board.map((cell, index) => {
+        return <div className="cell" key={index}>{cell}</div>
+      })}
       </div>
     );
   }
